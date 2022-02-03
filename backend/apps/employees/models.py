@@ -1,5 +1,5 @@
 from django.db import models
-from apps.id_type.models import id_type
+from sqlalchemy import null
 from django.core.validators import RegexValidator
 
 class employee(models.Model):
@@ -18,6 +18,13 @@ class employee(models.Model):
         ('ser', 'Servicios varios'),
         ('otr', 'Otros')
     ]
+
+    type_id_choices = [
+        ('cc', 'Cedula de ciudadania'),
+        ('ce', 'Cedula de extranjeria'),
+        ('pp', 'Pasaporte'),
+        ('pe', 'Permiso Especial')
+    ]
     last_name = models.CharField('Primer apellido', max_length=20, validators=[
         RegexValidator(
             regex='^[A-Z ]*$',
@@ -25,6 +32,7 @@ class employee(models.Model):
             code='invalid_lastname'
         ),
     ], blank=False, null=False)
+
     second_last_name = models.CharField('Segundo apellido', max_length=20, validators=[
         RegexValidator(
             regex='^[A-Z]*$',
@@ -32,6 +40,7 @@ class employee(models.Model):
             code='invalid_second_last_name'
         ),
     ], blank=False, null=False)
+
     first_name = models.CharField('Primer nomber', max_length=20, validators=[
         RegexValidator(
             regex='^[A-Z]*$',
@@ -39,6 +48,7 @@ class employee(models.Model):
             code='invalid_firstname'
         ),
     ], blank=False, null=False)
+
     other_name = models.CharField('Otros nombres', max_length=50, validators=[
         RegexValidator(
             regex='^[A-Z]*$',
@@ -46,7 +56,8 @@ class employee(models.Model):
             code='invalid_othername'
         ),
     ], blank=True)
-    id_type = models.ForeignKey(to = id_type, on_delete=models.CASCADE)
+
+    id_type = models.CharField('Tipo de identificacion', choices=type_id_choices, max_length=2, blank=False, null=False)
     country = models.CharField('Pais de empleo', max_length=3, choices=country_choices, blank=False, null=False)
     id_number = models.CharField('Numero de identificacion', max_length=20, validators=[
         RegexValidator(

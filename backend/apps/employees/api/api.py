@@ -8,10 +8,9 @@ from rest_framework.response import Response
 
 class employeeGetAPIView(ListAPIView):
     serializer_class = EmployeeGetSerializer
-    def get(self, request):
-        serializer = EmployeeGetSerializer
+    def get_queryset(self):
         queryset = employee.objects.all()
-        return Response(queryset)
+        return queryset
 
 class employeePostAPIView(CreateAPIView):
     serializer_class = EmployeePostSerializer
@@ -20,9 +19,9 @@ class employeePostAPIView(CreateAPIView):
 
         employee_data = request.data
         if employee_data['country'] == 'col':
-            domain = 'cidenet.com.col'
+            domain = 'CIDENET.COM.COL'
         else:
-            domain = 'cidenet.com.us'
+            domain = 'CIDENET.COM.US'
         email = employee_data['first_name'] + '.' + employee_data['last_name'].replace(" ", "") + '@' + domain
         startsEmail = employee_data['first_name'] + '.' + employee_data['last_name'].replace(" ", "")
         repeated_emails = employee.objects.filter(email__startswith = startsEmail).count()
