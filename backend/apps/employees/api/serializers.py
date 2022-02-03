@@ -6,3 +6,8 @@ class EmployeeGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = employee
         fields = '__all__'
+
+class EmployeePostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = employee
+        exclude = ('email',)
