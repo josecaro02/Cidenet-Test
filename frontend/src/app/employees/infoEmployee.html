@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Informaci&oacute;n empleado</h1>
+<mat-dialog-content>
+    <p>ID: {{data.id}}</p>
+    <p>Primer apellido: {{data.first_name}}</p>
+    <p>Segundo apellido: {{data.second_last_name}}</p>
+    <p>Primer nombre: {{data.first_name}}</p>
+    <p>Segundo nombre: {{data.other}}</p>
+    <p>Correo electr&oacute;nico: {{data.email}}</p>
+    <p>Tipo de idenficiaci&oacute;n: {{type_id_value}}</p>
+    <p>N&uacute;mero de identificaci&oacute;n: {{data.id_number}}</p>
+    <p>Area: {{area_value}}</p>
+    <p>Fecha de vinculaci&oacute;n: {{data.entry_date}}</p>
+    <p>Estado: {{estado_value}}</p>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+</div>
