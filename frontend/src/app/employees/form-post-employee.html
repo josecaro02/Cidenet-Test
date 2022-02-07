@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>Registra el nuevo empleado</h2>
+<mat-dialog-content class="mat-typography">
+  <div>
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+      <div class="form-group">
+        <label for="first_name">Primer Nombre<span *ngIf="fname_control.errors?.['required']" class="text-danger">*</span></label>
+        <input type="text" pattern="^[A-Z]*$" [formControl]="fname_control" class="form-control" id="first_name" required [(ngModel)]="model.first_name" name="first_name">
+        <div *ngIf="fname_control.errors?.pattern">
+          <p class="text-danger">Campo no valido. Solo usar letras mayusculas , sin &ntilde; o tildes</p>
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label for="other_name">Segundo nombre</label>
+        <input type="text" pattern="^[A-Z]*$" [formControl]="sname_control" class="form-control" id="other_name" [(ngModel)]="model.other_name" name="other_name">
+        <div *ngIf="sname_control.errors?.pattern">
+          <p class="text-danger">Campo no valido. Solo usar letras mayusculas , sin &ntilde; o tildes</p>
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Primer apellido<span *ngIf="lname_control.errors?.['required']" class="text-danger">*</span></label>
+        <input type="text"  pattern="^[A-Z]*$" [formControl]="lname_control" required class="form-control" id="last_name" [(ngModel)]="model.last_name" name="last_name">
+        <div *ngIf="lname_control.errors?.pattern">
+          <p class="text-danger">Campo no valido. Solo usar letras mayusculas , sin &ntilde; o tildes</p>
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label for="second_last_name">Segundo apellido<span *ngIf="slname_control.errors?.['required']" class="text-danger">*</span></label>
+        <input type="text" pattern="^[A-Z]*$" [formControl]="slname_control" required class="form-control" id="second_last_name" [(ngModel)]="model.second_last_name" name="second_last_name">
+        <div *ngIf="slname_control.errors?.pattern">
+          <p class="text-danger">Campo no valido. Solo usar letras mayusculas , sin &ntilde; o tildes</p>
+        </div> 
+      </div>
+
+      <div class="form-group">
+        <label for="id_type">Tipo de identificaci&oacute;n</label>
+        <select class="form-control" id="id_type" required [(ngModel)]="model.id_type" name="id_type" #power="ngModel">
+          <option *ngFor="let item of type_id | keyvalue" [value]="item.key">{{item.value}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="id_number">N&uacute;mero de identificaci&oacute;n<span *ngIf="num_id_control.errors?.['required']" class="text-danger">*</span></label>
+        <input type="text" required pattern="^[a-zA-Z0-9\-]*$" class="form-control"  [formControl]="num_id_control" id="id_number" [(ngModel)]="model.id_number" name="id_number">
+        <div *ngIf="num_id_control.errors?.pattern">
+          <p class="text-danger">Campo no valido. Solo usar letras, n&uacute;meros y gui&oacute;n(-) , sin &ntilde; o tildes</p>
+        </div> 
+      </div>
+
+
+      <div class="form-group">
+        <label for="id_type">Pais</label>
+        <select class="form-control" id="country" required [(ngModel)]="model.country" name="country" #power="ngModel">
+          <option *ngFor="let item of pais | keyvalue" [value]="item.key">{{item.value}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="id_type">Area</label>
+        <select class="form-control" id="area" required [(ngModel)]="model.area" name="area" #power="ngModel">
+          <option *ngFor="let item of area | keyvalue" [value]="item.key">{{item.value}}</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Registrar</button>
+    </form>
+  </div>
+</mat-dialog-content>

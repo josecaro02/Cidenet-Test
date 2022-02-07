@@ -1,29 +1,29 @@
-
-<div class="container mt-5">
-    <div class="row justify-content-end">
-        <div class="col-3 ">
-            <button mat-raised-button class="bg-success text-white">Add new employee</button>
-        </div>
-    </div>
-
-</div>
-
-<div class="mt-5">
-    <div *ngFor="let item of employees" class="mt-2">
-        <div class="container">
-            <div class="row">
-                <p class="col-5">
-                {{ item.first_name}} {{item.last_name}} ID:{{item.id_number}}
-                </p>
-                <button mat-raised-button color="primary" class="col-2" (click)="infoEmployee(item)">View Info</button>
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="container mt-5">
+        <div class="row justify-content-end">
+            <div class="col-3 ">
+                <button mat-raised-button class="bg-success text-white" (click)="formPost()">Add new employee</button>
             </div>
         </div>
+
     </div>
 
+    <div class="mt-5">
+        <div *ngFor="let item of employees" class="mt-2">
+            <div class="container">
+                <div class="row">
+                    <p class="col-5">
+                        {{ item.first_name}} {{item.last_name}} ID:{{item.id_number}}
+                    </p>
+                    <button mat-raised-button color="primary" class="col-2" (click)="infoEmployee(item)">View
+                        Info</button>
+                </div>
+            </div>
+        </div>
 
-    <mat-paginator [length]="num_employees"
-                [pageSize]="10"
-                    (page)="onPaginate($event)"
-                aria-label="Select page">
-    </mat-paginator>
+
+        <mat-paginator [length]="num_employees" [pageSize]="10" (page)="onPaginate($event)" aria-label="Select page">
+        </mat-paginator>
+    </div>
 </div>
